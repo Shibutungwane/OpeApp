@@ -1,0 +1,95 @@
+
+
+<div class="grid grid-cols-1 gap-6 lg:grid-cols-[340px_1fr]">
+  <!-- Left Column - Stat Cards -->
+  <div class="flex flex-col gap-6">
+    <app-stat-card
+      title="Total Balance"
+      value="R938,003,200"
+      percentage="+12.84%"
+      trend="up"
+      subtext="Balance bigger R6,259.00 last month"
+      variant="orange"
+      [data]="sparkData1"
+    
+    ></app-stat-card>
+
+    <app-stat-card
+      title="Total Income"
+      value="R120,993,000"
+      percentage="+11.49%"
+      trend="up"
+      subtext="Balance bigger R5,953.00 last month"
+      variant="dark"
+      [data]="sparkData2"
+
+    ></app-stat-card>
+
+    <app-stat-card
+      title="Total Expend"
+      value="R496,085,100"
+      percentage="-20.57%"
+      trend="down"
+      subtext="Balance bigger R4,234.00 last month"
+      variant="white"
+      [data]="sparkData3"
+     
+    ></app-stat-card>
+  </div>
+
+  <!-- Right Column - Charts & Schedule -->
+  <div class="flex flex-col gap-6">
+    <!-- Top Chart -->
+    <div class=" w-full">
+      <!-- <app-sales-overview></app-sales-overview> -->
+      <img src="/chart.png" alt="Chart" />
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="grid flex-1 grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="flex flex-col justify-between rounded-3xl bg-white p-6 shadow-sm">
+  <div>
+    <h3 class="text-xs font-medium text-gray-500">Upcoming Schedule</h3>
+    <h2 class="mt-2 text-lg font-bold text-gray-900">
+      Business Analytics Press
+    </h2>
+  </div>
+
+  <div class="mt-6 flex items-end justify-between">
+    <div>
+      <p class="text-sm text-gray-500">Thu, 24 Aug</p>
+      <p class="text-3xl font-bold text-orange-500">9:30 AM</p>
+    </div>
+
+    <div class="flex flex-col items-end">
+      <div class="flex -space-x-3">
+        @for (src of avatars; track $index) {
+          <img
+            [src]="src"
+            [alt]="'Avatar ' + $index"
+            class="h-8 w-8 rounded-full border-2 border-white object-cover ring-1 ring-gray-100"
+          />
+        }
+      </div>
+      <p class="mt-2 text-xs font-medium text-gray-900">
+        David McGuaire
+      </p>
+      <p class="text-[10px] text-gray-500">and 20+ more</p>
+    </div>
+  </div>
+</div>
+      <app-stat-card
+        title="Total Expend"
+        value="R496,085,100"
+        percentage="-20.57%"
+        trend="down"
+        subtext="Balance bigger R4,234.00 last month"
+        variant="white"
+        [data]="sparkData3"
+        class=""
+      ></app-stat-card>
+      <!-- <app-schedule-card></app-schedule-card>
+      <app-email-activity></app-email-activity> -->
+    </div>
+  </div>
+</div>

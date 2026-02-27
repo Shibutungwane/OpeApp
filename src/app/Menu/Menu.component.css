@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+.iconcolor {
+  @apply text-orange-600;
+}
+
+.active {
+  @apply bg-gray-200 text-orange-600 
+}

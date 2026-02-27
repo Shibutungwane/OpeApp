@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+.logobg {
+  background: linear-gradient(135deg, #0f001f 0%, #00225e 100%);
+  background-image: url('/bg6.jpg');
+  background-size: cover;
+}
+.iconcolor {
+  @apply text-orange-600;
+}
+
+.active {
+  @apply bg-gray-200 text-orange-600 
+}

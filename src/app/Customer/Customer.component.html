@@ -1,0 +1,103 @@
+<app-Heading title="Customers Overview"> </app-Heading>
+
+<!-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6"></div> -->
+
+<div class="">
+  <!-- Search Input -->
+  <div class="mb-6 relative max-w-md">
+    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+      </svg>
+    </div>
+    <input
+      type="text"
+      (input)="onSearch($event)"
+      placeholder="Search by name or email..."
+      class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-all"
+    />
+  </div>
+
+  <!-- Use filteredCustomers() instead of CustomerData() -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    @for (customer of filteredCustomers(); track customer.id) {
+      <div
+        class="bg-white duration-150  transition-transform hover:scale-[1.02] rounded-xl shadow-sm border border-gray-200 p-5 hover:shadow-md transition-shadow relative"
+      >
+        <div class="sm:flex-row flex items-center space-x-4">
+          <img [src]="customer.image" class="w-12 h-12 rounded-full bg-gray-100" alt="Avatar" />
+          <div>
+            <h3 class="text-lg font-bold darkText leading-tight">
+              {{ customer.firstName }} {{ customer.lastName }}
+            </h3>
+            <p class="text-sm text-gray-500">{{ customer.company?.title || 'User' }}</p>
+            <p class="mt-2 pt-1 border-t border-gray-100 text-sm text-gray-600">
+              <span class="font-medium mr-2">Email:</span> {{ customer.email }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <button
+          type="button"
+             (click)="openModal(customer)"
+            class="absolute right-0 top-6 flex items-center gap-2 rounded-lg  px-6 py-2.5 font-medium transition-colors"
+          >
+            <!-- Icon Wrapper -->
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-600">
+              <lucide-angular [img]="icons.ChevronRight" class="h-6 w-6 text-white"></lucide-angular>
+            </div>
+
+          </button>
+        </div>
+        <!-- <div class="mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600">
+        <div class="flex items-center mb-1">
+          <span class="font-medium mr-2">Email:</span> {{ customer.email }}
+        </div>
+      </div> -->
+      </div>
+    } @empty {
+      <div class="col-span-full text-center py-12 bg-gray-50 rounded-xl">
+        <p class="text-gray-500 font-medium animate-pulse">Loading Data</p>
+      </div>
+    }
+  </div>
+</div>
+@if(selectedCustomer())
+{
+
+  <!-- Overlay -->
+  <div class="fixed  inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" (click)="closeModal()">
+    
+    <!-- Modal Card -->
+    <div class="w-full max-w-lg rounded-2xl bg-white p-8 shadow-2xl" (click)="$event.stopPropagation()">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">Customer Details</h2>
+        <button (click)="closeModal()" class="text-white  text-xl bg-orange-600 rounded-lg p-2.5"> <lucide-angular [img]="icons.Plus" class="h-6 w-6 darktext -rotate-45"></lucide-angular></button>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <img [src]="selectedCustomer().image" class="w-24 h-24 rounded-full border-4 border-orange-100 mb-4" />
+        <h3 class="text-xl font-semibold">{{ selectedCustomer().firstName }} {{ selectedCustomer().lastName }}</h3>
+        <p class="text-orange-600 font-medium">{{ selectedCustomer().company?.title }}</p>
+         <p class=" font-medium">{{ selectedCustomer().gender }}</p>
+      </div>
+
+      <div class="mt-8 space-y-4 border-t pt-6">
+        <p><span class="font-bold text-gray-700">Email:</span> {{ selectedCustomer().email }}</p>
+        <p><span class="font-bold text-gray-700">Phone:</span> {{ selectedCustomer().phone || 'N/A' }}</p>
+      </div>
+
+      <button (click)="closeModal()" class="mt-8 w-full rounded-xl bg-orange-600 py-3 font-bold text-white hover:bg-orange-700 transition-colors">
+        Close Details
+      </button>
+    </div>
+  </div>
+}
+
+

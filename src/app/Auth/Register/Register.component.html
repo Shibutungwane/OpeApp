@@ -1,0 +1,116 @@
+<div class="absolute inset-0 bg-[url('/bg6.jpg')] bg-cover"></div>
+<div class="absolute inset-0 mix-blend-saturation"></div>
+<div class="glass-container">
+  <form id="loginForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="login-header">
+      <h1>Welcome Back</h1>
+      <p>Sign in to your account to continue</p>
+
+      @if (isLoggedIn()) {
+      <div class="toast-success  mt-2">
+        Logged in successfully.
+      </div>
+      }
+      
+      @if (loginError()) {
+      <div class="toast-fail mt-2">
+        {{ loginError() }}
+      </div>
+      }
+
+    </div>
+    <div class="input-group">
+      <lucide-angular [img]="icons.UserRound" class="my-icon"></lucide-angular>
+      <input
+        type="text"
+        placeholder="Username or Email"
+        id="username"
+        name="username"
+        formControlName="username"
+      />
+    
+    </div>
+      @if (form.get('username')?.touched && form.get('username')?.invalid) {
+      <p class="control-error">
+        @if (form.get('username')?.errors?.['required']) {
+        Username is required
+        }
+        @if (form.get('username')?.errors?.['usernameOrEmail']) {
+        Enter a valid username or email
+        }
+      </p>
+      }
+
+<div class="input-group">
+  <lucide-angular [img]="icons.LockKeyhole" class="my-icon"></lucide-angular>
+
+  <input
+    [type]="showPassword() ? 'text' : 'password'"
+    placeholder="Password"
+    id="password"
+    name="password"
+    formControlName="password"
+  />
+
+  <!-- Toggle button -->
+  <button
+    type="button"
+    class="toggle-password"
+    (click)="togglePassword()"
+  >
+    <lucide-angular
+      [img]="showPassword() ? EyeOff : Eye"
+      class="eye-icon"
+    ></lucide-angular>
+  </button>
+
+ 
+</div>
+@if (form.get('password')?.touched && form.get('password')?.invalid) {
+<p class="control-error">
+  @if (form.get('password')?.errors?.['required']) {
+  Password is required
+  }
+  @if (form.get('password')?.errors?.['minlength']) {
+  Password must be at least 6 characters
+  }
+</p>
+}
+
+    <div class="remember-forgot">
+      <label class="remember">
+        <input type="checkbox" id="remember" formControlName="remember" />
+        <span>Remember me</span>
+      </label>
+      <a href="#" class="forgot-link">Forgot password?</a>
+    </div>
+
+    <button type="submit" class="login-btn">Sign In</button>
+
+    <!-- <div class="divider">
+      <span>Or continue with</span>
+    </div>
+
+    <div class="social-login">
+      <div class="social-btn" title="Sign in with Google">
+        <i class="fab fa-google"></i>
+      </div>
+      <div class="social-btn" title="Sign in with Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </div>
+      <div class="social-btn" title="Sign in with Twitter">
+        <i class="fab fa-twitter"></i>
+      </div>
+    </div> -->
+
+    <p class="register-link">
+      Don't have an account?
+      <a href="#">Sign up</a>
+    </p>
+  </form>
+</div>
+
+<!-- Browser compatibility notice -->
+<div class="browser-notice" id="browserNotice">
+  For the best experience, please use a modern browser that supports backdrop-filter.
+</div>

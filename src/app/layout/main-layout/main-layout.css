@@ -9,5 +9,5 @@
 }
 
 .active {
-  @apply bg-gray-200 text-orange-600 
+  @apply bg-gray-200 text-orange-600;
 }

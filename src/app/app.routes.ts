@@ -11,10 +11,10 @@ import { ProductComponent } from './Product/Product.component';
 
 export const routes: Routes = [
   // Default route
-  { path: '', redirectTo: 'Login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   // Login WITHOUT layout
-  { path: 'Login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
 
   // Routes WITH layout
   {
